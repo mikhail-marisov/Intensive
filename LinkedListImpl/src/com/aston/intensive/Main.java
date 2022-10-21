@@ -1,5 +1,7 @@
 package com.aston.intensive;
 
+import java.util.Comparator;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -31,8 +33,10 @@ LinkedListImpl<Integer> linkList = new LinkedListImpl<Integer>();
 		//linkList.printOut();
 		//System.out.println();
 		
-		
 		linkList.add(5, 1);
+		linkList.add(7, 1);
+		linkList.add(9, 1);
+		linkList.sort ((o1, o2) -> o1 - o2);
 		
 		for (int i = 0; i < linkList.size(); i++) {
 			System.out.println(linkList.get(i));

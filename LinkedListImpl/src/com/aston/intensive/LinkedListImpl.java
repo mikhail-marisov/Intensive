@@ -1,5 +1,7 @@
 package com.aston.intensive;
 
+import java.util.Comparator;
+
 public class LinkedListImpl<T> implements MyLinkedList<T> {
 
 	private Node<T> firstNode;
@@ -49,20 +51,20 @@ public class LinkedListImpl<T> implements MyLinkedList<T> {
 
 		}
 	}
-	
+
 	Node<T> findListElementByIndex(int index) {
-        if (index < (size / 2)) {
-            Node<T> node = firstNode;
-            for (int i = 0; i < index; i++)
-                node = node.next;
-            return node;
-        } else {
-            Node<T> node = lastNode;
-            for (int i = size - 1; i > index; i--)
-                node = node.prev;
-            return node;
-        }
-    }
+		if (index < (size / 2)) {
+			Node<T> node = firstNode;
+			for (int i = 0; i < index; i++)
+				node = node.next;
+			return node;
+		} else {
+			Node<T> node = lastNode;
+			for (int i = size - 1; i > index; i--)
+				node = node.prev;
+			return node;
+		}
+	}
 
 	@Override
 	public T get(int index) {
@@ -76,6 +78,28 @@ public class LinkedListImpl<T> implements MyLinkedList<T> {
 	@Override
 	public int size() {
 		return size;
+	}
+
+	public void  sort(Comparator<T> comp) {
+
+		boolean unsorted = true;
+		T temp = null;
+		while (unsorted) {
+
+			unsorted = false;
+			for (int i = 0; i < (size - 1); i++) {
+
+				if ((comp.compare(this.findListElementByIndex(i).value,
+						this.findListElementByIndex(i + 1).value)) > 0) {
+					
+					temp = findListElementByIndex(i).value;
+					findListElementByIndex(i).value = findListElementByIndex(i + 1).value;
+					findListElementByIndex(i + 1).value = temp;
+					unsorted = true;
+
+				}
+			}
+		}
 	}
 
 	private static class Node<T> {
