@@ -101,6 +101,8 @@ public class LinkedListImpl<T> implements MyLinkedList<T> {
 			}
 		}
 	}
+	
+	
 
 	private static class Node<T> {
 		T value;
